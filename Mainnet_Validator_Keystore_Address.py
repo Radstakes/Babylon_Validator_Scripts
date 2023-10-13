@@ -24,7 +24,7 @@ password = pw.encode()
 print('\n')
 
 # Read the Radix Keystore File (which is in PKCS12 format)
-with open("node-keystore-rst-master.ks", "rb") as f:
+with open("node-keystore.ks", "rb") as f:
   private_key, certificate, additional_certificates = pkcs12.load_key_and_certificates(f.read(), password, default_backend())
 
 # Extract the unencrypted Private Key bytes
