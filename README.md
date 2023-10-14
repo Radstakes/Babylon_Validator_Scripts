@@ -26,4 +26,17 @@ The script will request your Keystore password, compile a manifest, then request
 4. Review the manifest to ensure it is as expected
 5. Enter the current epoch when prompted
 
-### Unregister
+### Mainnet_Unregister.py
+This Python script reads a node-keystore.ks file, requests the password and then compiles a transaction manifest to unregister a validator at the next epoch.  In order to make this transaction, the manifest will request a proof of the owner badge from the account associated with the Keystore.
+
+1. Use the `Mainnet_Validator_Keystore_Address.py` script to derive the address associated with the Keystore.
+2. Send your validator owner badge to the address from step 1.  You should also ensure there is sufficient XRD in this account as it will also be the fee payer.
+3. Edit the Mainnet_Unregister.py script where the variable `BABYLON_VALIDATOR_ADDRESS` is defined and change this to your validator's address.
+4. Run python3 `Mainnet_Unregister.py`
+5. Enter your Keystore password when prompted
+6. Review the mainfest to ensure it is as expected
+7. Enter the current epoch when prompted
+
+The transaction will then be submitted to the Gateway, and after a period of 5 seconds will query the tx hash and should display a "CommittedSuccess" message.  At the start of the next epoch, your validator will be removed from the active set.  
+
+Note - to re-register your node, simply edit this script to change the "unregister" method to "register" in the manifest.
