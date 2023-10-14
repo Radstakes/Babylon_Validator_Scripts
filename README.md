@@ -55,33 +55,38 @@ This script is particularly useful for failovers, but there are a few steps whic
 3. In your validator default.config, config.yaml or compose file, first ensure that your primary and backup nodes have the validator address configured.  For CLI users, Docker and Systemd, this should be as follows:
 
 Babylonnode CLI:
-```core_node:
+```
+core_node:
   core_release: ...
   data_directory: /home/ubuntu/babylon-ledger
   .
   .
-  validator_address: <VALIDATOR_ADDRESS>```
+  validator_address: <VALIDATOR_ADDRESS>
+```
 
 Docker:
-```RADIXDLT_CONSENSUS_VALIDATOR_ADDRESS: <VALIDATOR_ADDRESS>```
+`RADIXDLT_CONSENSUS_VALIDATOR_ADDRESS: <VALIDATOR_ADDRESS>`
 
 Systemd:
-```consensus.validator_address=<VALIDATOR_ADDRESS>```
+`consensus.validator_address=<VALIDATOR_ADDRESS>`
 
 4. restart your nodes after updating the configs with your validator address.
-5. Next you nede to obtain the public key of the node you will be wanting to failover to (normally your backup node).  You could also setup 2 scripts, one for failing over to the backup and one for failing back to the primary.  For this you just need to obtain both public keys from each node Keystore.  To obtain the public key, use the following command:
+5. Next you nede to obtain the public key of the node you will be wanting to failover to (normally your backup node).  You could also setup 2 scripts, one for failing over to the backup and one for failing back to the primary.  For this you just need to obtain both public keys from each node Keystore.  To obtain the public key, use the following command and make a note of the public key:
 
 Babylonnode CLI:
-```babylonnode api system identity```
+`babylonnode api system identity`
 
 Systemd/Docker:
-```curl http://localhost:3334/system/identity```
+`curl http://localhost:3334/system/identity`
 
 6. Edit the Mainnet_Updatekey.py script where the variable `BABYLON_VALIDATOR_ADDRESS` is defined and change this to your validator's address.
 7. Find the `backup_publickey` variable and update this to the public key obtained from step 5:
-```backup_public_key: bytearray = bytearray.fromhex(
+
+```
+backup_public_key: bytearray = bytearray.fromhex(
         "025fb0f5e60b616ceb0dffda8c76cc580b22bacc6b9bde3ca0a487b6688f332767"
-    )```
+    )
+```
 8. Run python3 `Mainnet_Updatekey.py`
 5. Enter your Keystore password when prompted
 6. Review the mainfest to ensure it is as expected
