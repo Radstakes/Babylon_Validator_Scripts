@@ -81,7 +81,7 @@ Systemd/Docker:
 7. Find the `backup_publickey` variable and update this to the public key obtained from step 5:
 ```backup_public_key: bytearray = bytearray.fromhex(
         "025fb0f5e60b616ceb0dffda8c76cc580b22bacc6b9bde3ca0a487b6688f332767"
-    )¬¬¬
+    )```
 8. Run python3 `Mainnet_Updatekey.py`
 5. Enter your Keystore password when prompted
 6. Review the mainfest to ensure it is as expected
