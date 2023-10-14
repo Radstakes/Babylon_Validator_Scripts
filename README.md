@@ -21,11 +21,9 @@ This Python script reads the node-keystore.ks file, derives the account and comp
 The script will request your Keystore password, compile a manifest, then request confirmation of the first epoch that the tx is valid.  The manifest will then be submitted to the Radix Gateway before waiting 5 seconds before querying the transaction status.
 
 1. Edit the script with the `DESTINATION_ACCOUNT` which is where you would like to deposit the owner badge to (normally an address of the mobile wallet)
-
 2. Run `python3 Mainnet_Move_Owner_Badge.py`
-
-2. Enter your Keystore password when prompted
-3. Review the manifest to ensure it is as expected
-4. Enter the current epoch when prompted
+3. Enter your Keystore password when prompted
+4. Review the manifest to ensure it is as expected
+5. Enter the current epoch when prompted
 
 ### Unregister
