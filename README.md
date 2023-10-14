@@ -9,7 +9,7 @@ You must install the Radix Engine Tookit plus the dependencies listed in the scr
 
 1. Run `pip3 install radix-engine-toolkit`
 
-Warning - Please ensure you understand the risks.  If your validator owner badge is sent to an address you do not have the private key for, you may lose access to it permanently!
+>Warning - Please ensure you understand the risks.  If your validator owner badge is sent to an address you do not have the private key for, you may lose access to it permanently!
 
 All tools are provided free to the Radix validator community, but if you find them useful - please stake with Radstakes or drop a little donation in the owner wallet :)
 
