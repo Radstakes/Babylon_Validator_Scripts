@@ -44,3 +44,12 @@ This Python script reads a node-keystore.ks file, requests the password and then
 The transaction will then be submitted to the Gateway, and after a period of 5 seconds will query the tx hash and should display a "CommittedSuccess" message.  At the start of the next epoch, your validator will be removed from the active set.  
 
 Note - to re-register your node, simply edit this script to change the "unregister" method to "register" in the manifest.
+
+### Mainnet_Updatekey.py
+This Python script reads a node-keystore.ks file, requests the password and then compiles a transaction manifest to update the public key associted to your validator component, at the next epoch.  In order to make this transaction, the manifest will request a proof of the owner badge from the account associated with the Keystore.
+
+This script is particularly useful for failovers, but there are a few steps which need to be taken first.
+
+1. If not already known, use the `Mainnet_Validator_Keystore_Address.py` script to derive the address associated with the Keystore.
+2. If not already done, send your validator owner badge to the address from step 1.  You should also ensure there is sufficient XRD in this account as it will also be the fee payer.
+3. 
