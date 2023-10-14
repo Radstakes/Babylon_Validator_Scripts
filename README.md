@@ -9,6 +9,10 @@ You must install the Radix Engine Tookit plus the dependencies listed in the scr
 
 1. Run `pip3 install radix-engine-toolkit`
 
+Warning - Please ensure you understand the risks.  If your validator owner badge is sent to an address you do not have the private key for, you may lose access to it permanently!
+
+All tools are provided free to the Radix validator community, but if you find them useful - please stake with Radstakes :)
+
 ### Mainnet_Validator_Keystore_Address.py
 This Python script reads a node-keystore.ks file, requests the password and then derives the Babylon wallet address which is associated with the public key.  This address is required for the 'unregister', 'register' and 'update key' scripts which follow and will the address you send the owner badge to.
 
