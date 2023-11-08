@@ -1,3 +1,28 @@
+**Update - 08/11/2023**
+
+Following feedback from the community, it was considered undesirable to have the owner badge in a keystore wallet (as this hinders the ability to use the badge in the wallet for routine maintenance or metadata updates).  I'm therefore pleased to add a method for unregistering a validator node using a 24 word seed (such as your Babylon mobile wallet). Please see below:
+
+*If you'd like to support my contributions, I now have an account on Backeum - check it out and feel free to tip me if these scripts are useful: [Radstakes on Backeum](https://backeum.com/p/radstakes)*
+
+### babylon_unregister.py
+
+1. Firstly you need to read the sections below and install the Radix Engine Toolkit and necessary dependencies as listed.
+2. Using the `babylon_mnemonic_to_keys.py` script in the [Validator-Automatic-Failover](https://github.com/Radstakes/Validator-Automatic-Failover) repo, enter your seed phrase as a string when prompted.  This will derive the private key bytes of the first account in your Babylon mobile wallet.  This is governed by the derivation path in the script, such as:
+```
+slip10_ctx = Bip32Slip10Ed25519.FromSeedAndPath(
+    seed_bytes, "m/44'/1022'/1'/525'/1460'/0'"
+)
+```
+3. If you would like to hold your owner badge in a different account of the mobile wallet, the simplest way is to create the account in the mobile wallet and then export a manual backup file.  Using a text editor you can find the derivation path of any account of the account you wish to use, and substitute it in the `babylon_mnemonic_to_keys.py` script accordingly.
+4. Once you run the script, copy the resulting private key bytes (first ensuring the derived address matches the account address in your mobile wallet).
+5. Edit the babylon_unregister.py script with the private key bytes from step 4.
+6. Edit the script to your own validator address at line 45 in the script.
+7. Make sure your owner badge is present in the account which was derived in step 4, along with 10 XRD to pay for fees.
+
+When you need to unregister your node, simply run the `babylon_unregister.py` script.  This will construct the transaction manifest to unregister and send the tx to the Radix Gateway (or can be configured to any other Gateway or core node).
+
+**Warning - This script requires you to enter your seed phrase to derive the private key pair for an account.  Ensure that you understand the risks and lock down access to the script to prevent access to your private key**
+
 # Radix Babylon Validator Scripts
 
 This repository provides a number of tools to assist validators on the Radix network.  The validator owner badge is used for authorisation to call certain methods on the validator component, such as register, unregister and update_key.  The following scripts use the Radix Engine Toolkit for constructing and signing transactions programatically.  The validators Keystore.ks file is used as the wallet for signing transactions so the badge is required to be transferred to this wallet.
