@@ -1,3 +1,30 @@
+**Update - 31/01/2024**
+
+In readiness for Radix's first coordinated protocol upgrade on Babylon, 2 scripts have been added to assist validators in signalling their readiness:
+
+### protocolvote_privkey.py
+### protocolvote_keystore.py
+
+The first script (privkey), assumes that you have the private key bytes for an account in the Radix wallet where you hold your validator owner badge.  You can obtain the private key by entering your mnemonic into the `babylon_mnemonic_to_keys.py` script found in the [Validator-Automatic-Failover](https://github.com/Radstakes/Validator-Automatic-Failover) repo, enter your seed phrase as a string when prompted.  This will derive the private key bytes of the first account in your Babylon mobile wallet.
+
+Once you have the private key, edit the script and enter it where prompted, along with your validator address on line 45. Once done, simply run the script: `python3 protocolvote_privkey.py` and a tx will be sent programatically to signal your readiness for the Anemone update.
+
+The second script (keystore), assumes that you have your validator badge held in a wallet controlled by a `keystore.ks` file.  If you intend to use this method, you will find instructions for deriving the account of a keystore in the `Mainnet_Unregister.py` instructions further down this page.  Once your validator badge is in the account of your keystore, simply edit the protocolvote_keystore.py script and enter your validator address for the variable `BABYLON_VALIDATOR_ADDRESS`.  Run the script using: `python3 protocolvote_keystore.py` and a tx will be sent to signal your readiness for the Anemone update.
+
+If you have any questions, please reach out to me in Telegram or Discord (@radstakes).
+
+### Mainnet_Unregister.py
+This Python script reads a node-keystore.ks file, requests the password and then compiles a transaction manifest to unregister a validator at the next epoch.  In order to make this transaction, the manifest will request a proof of the owner badge from the account associated with the Keystore.
+
+1. Use the `Mainnet_Validator_Keystore_Address.py` script to derive the address associated with the Keystore.
+2. Send your validator owner badge to the address from step 1.  You should also ensure there is sufficient XRD in this account as it will also be the fee payer.
+3. Edit the Mainnet_Unregister.py script where the variable `BABYLON_VALIDATOR_ADDRESS` is defined and change this to your validator's address.
+4. Run python3 `Mainnet_Unregister.py`
+5. Enter your Keystore password when prompted
+6. Review the mainfest to ensure it is as expected
+7. Enter the current epoch when prompted
+
+
 **Update - 08/11/2023**
 
 Following feedback from the community, it was considered undesirable to have the owner badge in a keystore wallet (as this hinders the ability to use the badge in the wallet for routine maintenance or metadata updates).  I'm therefore pleased to add a method for unregistering a validator node using a 24 word seed (such as your Babylon mobile wallet). Please see below:
