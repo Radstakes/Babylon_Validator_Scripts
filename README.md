@@ -1,3 +1,10 @@
+**Update - 16/05/2024**
+
+Scripts for signalling protocol readiness edited to include the latest Bottlenose signal name:
+
+### protocolvote_privkey.py
+### protocolvote_keystore.py
+
 **Update - 31/01/2024**
 
 In readiness for Radix's first coordinated protocol upgrade on Babylon, 2 scripts have been added to assist validators in signalling their readiness:
