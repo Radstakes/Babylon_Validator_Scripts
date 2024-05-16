@@ -125,7 +125,7 @@ manifest: TransactionManifest = (
        .call_method(
            ManifestBuilderAddress.STATIC(Address(BABYLON_VALIDATOR_ADDRESS)),
            "signal_protocol_update_readiness",
-           [ManifestBuilderValue.STRING_VALUE("220e2a4a4e86e3e6000000000anemone")],
+           [ManifestBuilderValue.STRING_VALUE("86894b9104afb73a000000bottlenose")],
         )
         .build(network_id)
     )
